@@ -33,8 +33,8 @@ public class ClientesMsApplication implements CommandLineRunner {
 		template.dropCollection(TipoCliente.class).subscribe();
 		
 		// REGISTRO DE TIPO DE CLIENTSE Y CLIENTES
-		TipoCliente tip1 = new TipoCliente("Empresarial");
-		TipoCliente tip2 = new TipoCliente("Peronal");
+		TipoCliente tip1 = new TipoCliente("Empresarial", 1);
+		TipoCliente tip2 = new TipoCliente("Peronal", 2);
 
 
 		Flux.just(tip1, tip2)
