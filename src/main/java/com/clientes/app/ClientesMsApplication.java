@@ -35,14 +35,21 @@ public class ClientesMsApplication implements CommandLineRunner {
 		// REGISTRO DE TIPO DE CLIENTSE Y CLIENTES
 		TipoCliente tip1 = new TipoCliente("Empresarial", 1);
 		TipoCliente tip2 = new TipoCliente("Peronal", 2);
+		TipoCliente tip3 = new TipoCliente("Persona VIP", 3);
+		TipoCliente tip4 = new TipoCliente("PYME", 4);
+		TipoCliente tip5 = new TipoCliente("Corporative", 5);
 
 
-		Flux.just(tip1, tip2)
+		Flux.just(tip1, tip2, tip3, tip4, tip5)
 		.flatMap(tip -> tipoClienteRepo.save(tip)).
 		thenMany(
 				Flux.just(new Cliente("Jose Luis", "Cayo", "Acuña", "74642154", tip1), 
 						new Cliente("Juan", "Perez", "Aguinaldo", "73242154", tip2),
-						new Cliente("Alfonzo", "Gilberto", "Orio", "11232154", tip2)
+						new Cliente("Alfonzo", "Gilberto", "Orio", "09983254", tip2),
+						new Cliente("Pepito", "Gonzales", "Polo", "84747387", tip3),
+						new Cliente("Rosa", "Loza", "Orozco", "54294859", tip4),
+						new Cliente("Yanni", "Trujillo", "Arias", "38574817", tip5)
+
 						)
 				.flatMap(cli -> clienteRepo.save(cli))
 			)
