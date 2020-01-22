@@ -1,4 +1,4 @@
-package com.clientes.app.expose;
+package com.customer.app.expose;
 
 import javax.validation.Valid;
 
@@ -12,40 +12,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.clientes.app.business.IClienteService;
-import com.clientes.app.models.Cliente;
+import com.customer.app.business.ICustomerService;
+import com.customer.app.models.Customer;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/clientes")
-public class ClienteRestController {
+@RequestMapping("/customers")
+public class CustomerController {
 	@Autowired
-	private IClienteService clienteService;
+	private ICustomerService customerService;
 
 	@GetMapping
-	public Flux<Cliente> listarAllClientes() {
-		return clienteService.findAll();
+	public Flux<Customer> findAllCustomers() {
+		return customerService.findAll();
 	}
 
 	@GetMapping("/{id}")
-	public Mono<Cliente> buscarCliente(@PathVariable String id) {
-		return clienteService.finById(id);
+	public Mono<Customer> findCustomer(@PathVariable String id) {
+		return customerService.finById(id);
 	}
 
 	@PostMapping
-	public Mono<Cliente> registrarCliente(@RequestBody @Valid Cliente cliente) {
-		return clienteService.save(cliente);
+	public Mono<Customer> saveCustomer(@RequestBody @Valid Customer customer) {
+		return customerService.save(customer);
 	}
 
 	@PutMapping
-	public Mono<Cliente> actualizarCliente(@RequestBody Cliente cliente) {
-		return clienteService.save(cliente);
+	public Mono<Customer> updateCustomer(@RequestBody Customer customer) {
+		return customerService.save(customer);
 	}
 
 	@DeleteMapping("/{id}")
-	public Mono<Void> eliminarCliente(@PathVariable String id){
-		return clienteService.deleteById(id);
+	public Mono<Void> deleteCustomer(@PathVariable String id){
+		return customerService.deleteById(id);
 	}
 }

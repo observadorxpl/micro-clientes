@@ -1,4 +1,4 @@
-package com.clientes.app.util;
+package com.customer.app.util;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

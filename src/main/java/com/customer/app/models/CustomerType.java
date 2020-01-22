@@ -1,4 +1,4 @@
-package com.clientes.app.models;
+package com.customer.app.models;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -16,20 +16,20 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter @Setter
 @ToString
-public class TipoCliente {
+public class CustomerType {
 	@Id
-	private String idTipoCliente;
+	private String idCustomerType;
 	
 	@NotEmpty
-	private String descripcion;
+	private String description;
 
 	@NotEmpty
-	private Integer codigoTipoCliente;
+	private Integer customerTypeCode;
 
-	public TipoCliente(@NotEmpty String descripcion, @NotEmpty Integer codigoTipoCliente) {
+	public CustomerType(@NotEmpty String description, @NotEmpty Integer customerTypeCode) {
 		super();
-		this.descripcion = descripcion;
-		this.codigoTipoCliente = codigoTipoCliente;
+		this.description = description;
+		this.customerTypeCode = customerTypeCode;
 	}
 
 	

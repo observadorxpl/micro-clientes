@@ -1,4 +1,4 @@
-package com.clientes.app;
+package com.customer.app;
 
 
 import java.util.ArrayList;
