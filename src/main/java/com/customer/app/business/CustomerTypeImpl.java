@@ -38,6 +38,11 @@ public class CustomerTypeImpl implements ICustomerTypeService{
 	public Mono<Void> deleteById(String id) {
 		return customerTypeRepo.deleteById(id);
 	}
+
+	@Override
+	public Mono<CustomerType> buscarPorCodigoTipoCliente(Integer customertypeCode) {
+		return customerTypeRepo.findByCustomerTypeCode(customertypeCode);
+	}
 	
 	
 }

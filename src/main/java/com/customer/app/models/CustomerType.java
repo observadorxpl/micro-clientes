@@ -1,6 +1,7 @@
 package com.customer.app.models;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -23,10 +24,10 @@ public class CustomerType {
 	@NotEmpty
 	private String description;
 
-	@NotEmpty
+	@NotNull
 	private Integer customerTypeCode;
 
-	public CustomerType(@NotEmpty String description, @NotEmpty Integer customerTypeCode) {
+	public CustomerType(@NotEmpty String description, @NotNull Integer customerTypeCode) {
 		super();
 		this.description = description;
 		this.customerTypeCode = customerTypeCode;
