@@ -19,9 +19,11 @@ import com.customer.app.models.Customer;
 import com.customer.app.models.CustomerType;
 
 import reactor.core.publisher.Mono;
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = ClientesMsApplicationTests.class)
+//@RunWith(SpringRunner.class)
+//@SpringBootTest(classes = ClientesMsApplicationTests.class)
+@SpringBootTest
 class ClientesMsApplicationTests {
+	/*
 	@Value("${com.bootcamp.gateway.url}")
 	private String gatewayUrlPort;
 	
@@ -76,5 +78,5 @@ class ClientesMsApplicationTests {
 			Assertions.assertThat(cus.getDni()).isNotEmpty();
 		});
 	}
-
+*/
 }
