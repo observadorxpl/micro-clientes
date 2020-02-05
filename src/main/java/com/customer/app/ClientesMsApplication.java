@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -15,7 +17,8 @@ import com.customer.app.repository.ICustomerRepository;
 import com.customer.app.repository.ICustomerTypeRepository;
 
 import reactor.core.publisher.Flux;
-
+@EnableCircuitBreaker
+@EnableEurekaClient
 @SpringBootApplication
 public class ClientesMsApplication implements CommandLineRunner {
 
@@ -73,6 +76,8 @@ public class ClientesMsApplication implements CommandLineRunner {
 				}).flatMap(cus -> {
 					return customerRepo
 							.save(new Customer("Pepito", "Gonzales", "Polo", "84747387", tip3, cus.getBank()));
-				}).subscribe();*/
+				}).subscribe();
+				*/
 	}
+	
 }
