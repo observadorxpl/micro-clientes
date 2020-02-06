@@ -1,10 +1,13 @@
 package com.customer.app.business;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import com.customer.app.expose.CustomerController;
 import com.customer.app.models.Bank;
 import com.customer.app.models.Customer;
 import com.customer.app.repository.ICustomerRepository;
@@ -14,7 +17,9 @@ import reactor.core.publisher.Mono;
 
 @Service
 public class CustomerServiceImpl implements ICustomerService {
-
+	
+	private Logger log = LoggerFactory.getLogger(CustomerController.class);
+	
 	@Value("${com.bootcamp.gateway.url}")
 	private String gatewayUrlPort;
 
@@ -51,13 +56,13 @@ public class CustomerServiceImpl implements ICustomerService {
 
 	@Override
 	public Mono<Customer> buscarPorCodigoTipoClienteYCodigoTipoBanco(Integer customerTypeCode, Integer codeBank) {
-		return customerRepo.buscarPorCodigoTipoClienteYCodigoTipoBanco(customerTypeCode, codeBank);
+		return customerRepo.findByCustomerType_CustomerTypeCodeAndBank_CodeBank(customerTypeCode, codeBank);
 	}
 
 	@Override
-	public Mono<Bank> buscarBancoPorCodigo(Integer bankCode) {
-		return WebClient.builder().baseUrl("http://" + gatewayUrlPort + "/micro-banco/bank/code-bank/").build().get()
-				.uri(bankCode.toString()).retrieve().bodyToMono(Bank.class).log();
+	public Flux<Customer> buscarBancoPorCodigo(Integer bankCode) {
+		log.info("buscarBancoPorCodigo service bankCode: " + bankCode);
+		return customerRepo.findByBank_CodeBank(bankCode);
 	}
 
 }

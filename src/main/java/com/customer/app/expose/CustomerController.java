@@ -2,6 +2,8 @@ package com.customer.app.expose;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.customer.app.business.ICustomerService;
-import com.customer.app.models.Bank;
 import com.customer.app.models.Customer;
 
 import io.swagger.annotations.Api;
@@ -25,6 +26,8 @@ import reactor.core.publisher.Mono;
 @Api(value = "Customer Microservice")
 @RequestMapping("/customers")
 public class CustomerController {
+	private Logger log = LoggerFactory.getLogger(CustomerController.class);
+	
 	@Autowired
 	private ICustomerService customerService;
 
@@ -40,10 +43,11 @@ public class CustomerController {
 		return customerService.finById(id);
 	}
 	
-	@GetMapping("/bank/{codeBank}")
-	@ApiOperation(value = "Find a bank ", notes="Find a bank by id")
-	public Mono<Bank> findBank(@PathVariable String codeBank) {			//////////////////////////??
-		return customerService.buscarBancoPorCodigo(Integer.parseInt(codeBank));
+	@GetMapping("/code-bank/{codeBank}")
+	@ApiOperation(value = "Find customers ", notes="Find customers by codeBank")
+	public Flux<Customer> findBank(@PathVariable Integer codeBank) {		
+		log.info("FindBank Controller codeBank: " + codeBank);
+		return customerService.buscarBancoPorCodigo(codeBank);
 	}
 
 	@PostMapping
