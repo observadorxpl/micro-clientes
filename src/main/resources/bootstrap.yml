@@ -1,3 +1,7 @@
 spring:
   application:
     name: micro-clientes
+  cloud:
+    config:
+      uri:
+      - http://localhost:8888
